@@ -1,5 +1,6 @@
 var bttnIncrement = document.getElementById("btnIncrement");
         var bttnMinus = document.getElementById("btnMinus");
+        var span = document.getElementById('item');
 
         class Game {
             constructor(songName, artist, imgSrc, audioSrc) {
@@ -10,7 +11,7 @@ var bttnIncrement = document.getElementById("btnIncrement");
             }
 
             getName() {
-                return (this.songName + " /// " + this.artist);
+                return (this.songName + " .//. " + this.artist + " ////" + this.imgSrc);
             }
         }
         class Index {
@@ -20,7 +21,8 @@ var bttnIncrement = document.getElementById("btnIncrement");
             }
 
             getxMusic() {
-                console.log(this.musicList[this.index].getName());
+                var ac = this.musicList[this.index];
+                return (ac.audioSrc + " /// " + ac.getName());
             }
 
             nextMusic() {
@@ -48,15 +50,18 @@ var bttnIncrement = document.getElementById("btnIncrement");
         const myIndex = new Index(musicList);
 
         window.addEventListener("load", () => {
-            myIndex.getxMusic();
+            span.innerText = myIndex.getxMusic();
         });
 
         bttnIncrement.addEventListener("click", () => {
             myIndex.nextMusic();
-            myIndex.getxMusic();
+            var item = myIndex.getxMusic();
+            console.log(item)
+            span.innerText = item;
         });
 
         bttnMinus.addEventListener("click", () => {
             myIndex.prevMusic();
-            console.log(myIndex.getxMusic());
+            var item = myIndex.getxMusic();
+            span.innerText = item;
         });
